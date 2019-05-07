@@ -1,16 +1,7 @@
-#!/usr/bin/env python
+import httplib2, os, sys, random, string
 
-import httplib2, sys, os, random, string
-
-ENDLINE = '\033[0m'
-BOLD = '\033[1m'
-YELLOW = '\033[93m'
-BLUE = '\033[94m'
-GREEN = '\033[92m'
-RED = '\033[91m'
-GREYBACK = '\033[40m'
-
-dirname = 'Lightshotr'
+print('WRITE DIRECTORY NAME FOR SAVING SCREENSHOTS')
+dirname = str(input())
 
 pngCount = 0
 foundss = 0
@@ -23,31 +14,24 @@ def save_pic(content, pic_id, ext):
 	f.write(content)
 	f.close
 
-def print_status(png_count, link, color):
-	print BLUE + BOLD + '[+] ' + ENDLINE + str(png_count) + ' Screenshots Found - ' + color + BOLD + link + ENDLINE
+def print_status(png_count, link):
+	print (str(png_count) + ' Screenshots Found - ' + link)
 
 def abort():
-	print '\n\n' + GREEN + BOLD + '[+]' + ENDLINE + ' All found Screenshots were saved to: ' + BOLD + os.getcwd() + '/' + dirname + ENDLINE + ' . Enjoy ;)\n'
+	print ('\n\n'  + ' All found Screenshots were saved to: ' + os.getcwd() + '/' + dirname + ' . Enjoy ;)\n')
 	sys.exit(0)
 
-print YELLOW + BOLD + '''
-  _____                 _  _____ _           _   
- |  __ \               | |/ ____| |         | |  
- | |__) |__ _ _ __   __| | (___ | |__   ___ | |_ 
- |  _  // _` | '_ \ / _` |\___ \| '_ \ / _ \| __|
- | | \ \ (_| | | | | (_| |____) | | | | (_) | |_ 
- |_|  \_\__,_|_| |_|\__,_|_____/|_| |_|\___/ \__|
-
- ''' + ENDLINE + GREYBACK + YELLOW + BOLD + 'Author:' + ENDLINE + ' @xD4rker\n'
+print ('Author: @xD4rker\n')
+print ('Press CTRL+C to abort')
 
 if not os.path.exists(dirname):
     os.makedirs(dirname)
 
-while 1:
+while True:
 
 	try:
 
-		status_color = RED
+
 		pic_id = generate_id()
 		link = 'https://prnt.sc/' + pic_id + '/direct'
 		h = httplib2.Http(timeout=100)
@@ -60,14 +44,14 @@ while 1:
 			if (pngUrl != 'http://i.imgur.com/8tdUI8N.png') & (ext == '.png' or ext == '.jpg'):
 				pngCount += 1
 				save_pic(resp[1], pic_id, ext)
-				status_color = GREEN
+
 			
-		print_status(pngCount, link, status_color)
+		print_status(pngCount, link)
 
 	except httplib2.RelativeURIError:
 		pass
 	except KeyboardInterrupt:
 		abort()
 	except Exception as e:
-		print '\n\n' + GREEN + BOLD + '[+]' + ENDLINE + ' An error occurred: ' + str(e)
+		print ('\n\n'  + '[+]'  + ' An error occurred: ' + str(e))
 		sys.exit(1)

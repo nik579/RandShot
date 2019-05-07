@@ -14,8 +14,8 @@ def save_pic(content, pic_id, ext):
 	f.write(content)
 	f.close
 
-def print_status(png_count, link):
-	print (str(png_count) + ' Screenshots Found - ' + link)
+def print_status(png_count, link, status):
+	print (str(png_count) + ' Screenshots Found - ' + link + status)
 
 def abort():
 	print ('\n\n'  + ' All found Screenshots were saved to: ' + os.getcwd() + '/' + dirname + ' . Enjoy ;)\n')
@@ -31,7 +31,7 @@ while True:
 
 	try:
 
-
+		status = ' BAD'
 		pic_id = generate_id()
 		link = 'https://prnt.sc/' + pic_id + '/direct'
 		h = httplib2.Http(timeout=100)
@@ -44,9 +44,9 @@ while True:
 			if (pngUrl != 'http://i.imgur.com/8tdUI8N.png') & (ext == '.png' or ext == '.jpg'):
 				pngCount += 1
 				save_pic(resp[1], pic_id, ext)
-
+				status = ' OK'
 			
-		print_status(pngCount, link)
+		print_status(pngCount, link, status)
 
 	except httplib2.RelativeURIError:
 		pass

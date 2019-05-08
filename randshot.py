@@ -18,10 +18,10 @@ def print_status(png_count, link, status):
 	print (str(png_count) + ' Screenshots Found - ' + link + status)
 
 def abort():
-	print ('\n\n'  + ' All found Screenshots were saved to: ' + os.getcwd() + '/' + dirname + ' . Enjoy ;)\n')
+	print ('\n\n'  + ' All found Screenshots were saved to: ' + os.getcwd() + '/' + dirname + ' . Enjoy ;)')
 	sys.exit(0)
 
-print ('Author: @xD4rker\n')
+print ('Author: @xD4rker')
 print ('Press CTRL+C to abort')
 
 if not os.path.exists(dirname):

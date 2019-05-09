@@ -11,4 +11,4 @@ pip install httplib2
 Screenshots
 ===
 
-![01](http://i.imgur.com/RIxUwm4.png)
+![01](https://i.imgur.com/Mt0rqZF.jpg)

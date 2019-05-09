@@ -9,7 +9,6 @@ dirname = str(input())
 
 pngCount = 0
 foundss = 0
-count = 0
 
 
 def generate_id():

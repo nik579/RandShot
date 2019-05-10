@@ -8,7 +8,6 @@ print('WRITE DIRECTORY NAME FOR SAVING SCREENSHOTS')
 dirname = str(input())
 
 pngCount = 0
-foundss = 0
 
 
 def generate_id():
